@@ -5,13 +5,10 @@ import { facultyPaths } from "../../routes/faculty.routes";
 import { studentPaths } from "../../routes/student.routes";
 import { useAppSelector } from "../../redux/hooks";
 import { selectCurrentUser } from "../../redux/featuers/auth/authSlice";
+import { userRole } from "../../constants/global";
 const { Sider } = Layout;
 const Sidebar = () => {
-  const userRole = {
-    ADMIN: "admin",
-    FACULTY: "faculty",
-    STUDENT: "student",
-  };
+   
   const user = useAppSelector(selectCurrentUser);
   let sidebarItems;
 

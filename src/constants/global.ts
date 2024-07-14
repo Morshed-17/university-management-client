@@ -17,3 +17,9 @@ export const monthOptions = monthNames.map((item) => ({
   value: item,
   label: item,
 }));
+
+export const userRole = {
+  ADMIN: "admin",
+  FACULTY: "faculty",
+  STUDENT: "student",
+};

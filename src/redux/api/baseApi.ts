@@ -9,9 +9,10 @@ import {
 import { RootState } from "../store";
 import { logout, setUser } from "../featuers/auth/authSlice";
 import { toast } from "sonner";
+import { TError } from "../../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api/v1",
+  baseUrl: "http://localhost:5000/api/v1/",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -29,7 +30,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 > = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
   if(result.error?.status === 404){
-    toast.error("User not found")
+    toast.error((result.error as TError).data.message)
   }
 
   if (result.error?.status === 401) {
